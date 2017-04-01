@@ -23,8 +23,14 @@ namespace Stock_Market_Simulator {
             }
             StockTurns.Add(new StockTurn(Trades));
             CreateNewStance(true);
+            if (StockTurns.Count >= 150) {
+                StockTurns.RemoveAt(0);
+            }
         }
         void CreateNewStance(bool ShortTerm) {
+            if (StockTurns[StockTurns.Count - 1].AveragePrice < 1f) {
+                new MarketStance(Stance.ShortTermLong, 1000, client, this);
+            }
             if (ShortTerm) {
                 if (StockTurns.Count < 4) {
                     return;
@@ -65,7 +71,7 @@ namespace Stock_Market_Simulator {
 
             public void OnBuy(long Quanity) {
                 Owner.StocksOwned += Quanity;
-                Console.WriteLine("Stocks Baught By Algo! " + Quanity);
+                //Console.WriteLine("Stocks Baught By Algo! " + Quanity);
             }
         }
     }
@@ -88,7 +94,7 @@ namespace Stock_Market_Simulator {
             }
             AveragePrice = TotalPrice / (double)trades.Count;
             Trend = AssignSegment();
-            Console.WriteLine(Trend);
+            //Console.WriteLine(Trend);
         }
         Segments AssignSegment() {
             if (ClosePrice > OpeningPrice) {

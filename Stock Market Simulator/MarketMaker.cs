@@ -15,7 +15,7 @@ namespace Stock_Market_Simulator {
             if (LMMPercentage > 1f) {
                 throw new Exception("LMMPercentage is greater than 1!");
             }
-            client = new Client(ID, LMMPercentage);
+            client = new Client(ID, LMMPercentage, OnBuy);
         }
 
         public void AddJob(Bids bid) {
@@ -24,6 +24,9 @@ namespace Stock_Market_Simulator {
 
         public void AddJob(Offers offer) {
             Queue.Add(new Job(JobType.Offer, null, offer));
+        }
+        public void OnBuy(long Quanity) {
+            MarketMakerManager.NumberOfStocksOwned += Quanity;
         }
 
         public void RunTurn() {
@@ -45,13 +48,13 @@ namespace Stock_Market_Simulator {
 
         void RunBid(Job job) {
             if (job.Bid.Quanity <= MarketMakerManager.NumberOfStocksOwned) {
-                MarketMakerManager.NumberOfStocksOwned -= job.Bid.Quanity;
-                new Trade(ref job.Bid, job.Bid.Quanity);
+                MarketMakerManager.NumberOfStocksOwned -= job.Quanity;
+                new Trade(ref job.Bid, job.Quanity);
             } else {
                 //TODO: Count how many times takes and maybe cancel transaction if can't be completed
-                new Trade(ref job.Bid, MarketMakerManager.NumberOfStocksOwned);
-                MarketMakerManager.NumberOfStocksOwned = 0;
-                Pool.AddBid(new Bids(Double.PositiveInfinity, job.Bid.Quanity, client));
+                Pool.AddBid(new Bids(Double.PositiveInfinity, 10, client));
+                MarketMakerManager.NumberOfStocksOwned += job.Quanity;
+                new Trade(ref job.Bid, job.Quanity);
             }
         }
 

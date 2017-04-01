@@ -10,12 +10,20 @@ namespace Stock_Market_Simulator {
         static List<OfferPriceLevel> OffersPool = new List<OfferPriceLevel>();
         public static int NumberOfBuyer {
             get {
-                return BidsPool.Count;
+                int numBids = 0;
+                foreach (BidPriceLevel bpl in BidsPool) {
+                    numBids += bpl.bids.Count();
+                }
+                return numBids;
             }
         }
         public static int NumberOfOffers {
             get {
-                return OffersPool.Count;
+                int numOffers = 0;
+                foreach (OfferPriceLevel opl in OffersPool) {
+                    numOffers += opl.offers.Count();
+                }
+                return numOffers;
             }
         }
         public static void AddBid(Bids bid) {

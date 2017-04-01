@@ -26,12 +26,11 @@ namespace Stock_Market_Simulator {
             }
         }
         public static void RunMarketMakers() {
-            //foreach (MarketMaker mm in marketMakers) {
-            //    if (mm.QueueSize != 0) {
-            //        Thread thread = new Thread(new ThreadStart(mm.RunTurn));
-            //        thread.Start();
-            //    }
-            //}
+            foreach (MarketMaker mm in marketMakers) {
+                if (mm.QueueSize != 0) {
+                    mm.RunTurn();
+                }
+            }
         }
     }
 }

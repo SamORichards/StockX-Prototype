@@ -19,6 +19,10 @@ namespace Stock_Market_Simulator {
         }
         public Trade(ref Bids bid, long quanity) {
 
+            UpdateQuanities(ref bid, quanity);
+            MoneyTransaction(ref bid, quanity);
+            UpdateDatabase(ref bid, quanity);
+            AddToTransactionList(ref bid, quanity);
         }
         void UpdateDatabase(ref Bids bid, ref Offers offer, long quanity) {
 

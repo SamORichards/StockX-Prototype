@@ -15,11 +15,11 @@ namespace Stock_Market_Simulator {
         public static double CurrentPrice = 5.50f;
         static void Main(string[] args) {
             Stopwatch mainTime = new Stopwatch();
-            int TotalStocksInCirculation = 1000;
+            int TotalStocksInCirculation = 100000000;
             mainTime.Start();
             int i = 0;
             while (1 == 1) {
-                if (mainTime.Elapsed.TotalSeconds > 0.2f) {
+                if (mainTime.Elapsed.TotalSeconds < 0.2f) {
                     i++;
                     if (i == 5) {
                         algoTrader.RunTurn(TradesThisTurn);
@@ -27,9 +27,9 @@ namespace Stock_Market_Simulator {
                         MarketMakerManager.RunMarketMakers();
                         i = 0;
                     }
-                    Random r = new Random();
-                    float NumOfBuyers = r.Next(10);
-                    float NumOfOffers = r.Next(10);
+                    Random r = new Random((int)DateTime.Now.Ticks);
+                    int NumOfBuyers = r.Next(10);
+                    int NumOfOffers = r.Next(10);
                     for (int j = 0; j < NumOfBuyers; j++) {
                         Pool.AddBid(new Bids(Math.Round(CurrentPrice, 2), r.Next(100), new Client(j)));
                     }
@@ -45,11 +45,11 @@ namespace Stock_Market_Simulator {
             }
         }
 
-        private static void UpdateStockPrice(ref double startPrice, float numOfBuyers, float numOfOffers, int totalStocksInCirculation) {
-            //Console.WriteLine("The Number Of Bids is {0}, and the Number Of Offers is: {1}", numOfBuyers, numOfOffers);
-            float ChangeInPrice = ((numOfBuyers - numOfOffers) / totalStocksInCirculation);
+        private static void UpdateStockPrice(ref double startPrice, int numOfBuyers, int numOfOffers, int totalStocksInCirculation) {
+            Console.WriteLine("The Number Of Bids is {0}, and the Number Of Offers is: {1}", numOfBuyers, numOfOffers);
+            float ChangeInPrice = ((float)(numOfBuyers - numOfOffers) / (float)totalStocksInCirculation);
             startPrice += (ChangeInPrice * 10);
-            //Console.WriteLine("New Price is " + startPrice);
+            Console.WriteLine("New Price is " + startPrice);
             if (startPrice > highestPrice) {
                 highestPrice = startPrice;
             }
