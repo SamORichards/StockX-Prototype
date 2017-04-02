@@ -39,6 +39,9 @@ namespace Stock_Market_Simulator {
             if (bid.Owner.OnBuy != null) {
                 bid.Owner.OnBuy(quanity);
             }
+            if (offer.Owner.OnSell != null) {
+                offer.Owner.OnSell(quanity);
+            }
         }
         void AddToTransactionList(ref Bids bid, ref Offers offer, long quanity) {
             StockTicker.TradesThisTurn.Add(this);

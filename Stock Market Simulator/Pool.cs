@@ -118,10 +118,12 @@ namespace Stock_Market_Simulator {
         public long ID { get; private set; }
         public float LMMPercentage { get; private set; }
         public Action<long> OnBuy;
-        public Client(long id, float lmmPercentage = 0f, Action<long> onBuy = null) {
+        public Action<long> OnSell;
+        public Client(long id, float lmmPercentage = 0f, Action<long> onBuy = null, Action<long> onSell = null) {
             ID = id;
             LMMPercentage = lmmPercentage;
             OnBuy = onBuy;
+            OnSell = onSell;
         }
     }
 }

@@ -15,11 +15,11 @@ namespace Stock_Market_Simulator {
         public static double CurrentPrice = 5.50f;
         static void Main(string[] args) {
             Stopwatch mainTime = new Stopwatch();
-            int TotalStocksInCirculation = 100000000;
+            int TotalStocksInCirculation = 10000;
             mainTime.Start();
             int i = 0;
             while (1 == 1) {
-                if (mainTime.Elapsed.TotalSeconds < 0.2f) {
+                if (mainTime.Elapsed.TotalSeconds > 0.2f) {
                     i++;
                     if (i == 5) {
                         algoTrader.RunTurn(TradesThisTurn);
