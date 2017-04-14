@@ -91,6 +91,7 @@ namespace Stock_Market_Simulator {
             }
 
             void ShortTermLong(long Quanity) {
+                Console.WriteLine("Selling " + Quanity);
                 Pool.AddBid(new Bids(StockTicker.CurrentPrice, Quanity, client));
             }
 
@@ -105,6 +106,7 @@ namespace Stock_Market_Simulator {
                     case Stance.ShortTermShort:
                         if ((StockTicker.CurrentPrice <= SuccessPrice || StockTicker.CurrentPrice > FailurePrice) && !OfferPlaced && StocksOwned == 0) {
                             Pool.AddBid(new Bids(StockTicker.CurrentPrice, StocksWanted, client));
+                            Console.WriteLine("Yeah I done here");
                             OfferPlaced = true;
                         }
                         break;
