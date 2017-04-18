@@ -114,6 +114,7 @@ namespace Stock_Market_Simulator {
             Quanity = quanity;
         }
     }
+
     class Client {
         public long ID { get; private set; }
         public float LMMPercentage { get; private set; }

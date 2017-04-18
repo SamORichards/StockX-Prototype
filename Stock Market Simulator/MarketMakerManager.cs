@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Stock_Market_Simulator {
     static class MarketMakerManager {
+
         public static long NumberOfStocksOwned;
         static List<MarketMaker> marketMakers = new List<MarketMaker>() {
             new MarketMaker(long.MaxValue, 0.20f),

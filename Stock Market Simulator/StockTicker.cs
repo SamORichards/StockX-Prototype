@@ -45,6 +45,7 @@ namespace Stock_Market_Simulator {
             }
         }
 
+
         private static void UpdateStockPrice(ref double startPrice, int numOfBuyers, int numOfOffers, int totalStocksInCirculation) {
             Console.WriteLine("The Number Of Bids is {0}, and the Number Of Offers is: {1}", numOfBuyers, numOfOffers);
             float ChangeInPrice = ((float)(numOfBuyers - numOfOffers) / (float)totalStocksInCirculation);

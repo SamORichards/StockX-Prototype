@@ -64,6 +64,7 @@ namespace Stock_Market_Simulator {
         }
 
     }
+
     class Job {
         public JobType jobType;
         public Bids Bid;

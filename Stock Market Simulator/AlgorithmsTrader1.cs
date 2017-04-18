@@ -110,6 +110,7 @@ namespace Stock_Market_Simulator {
                             OfferPlaced = true;
                         }
                         break;
+
                 }
             }
             public void OnBuyLong(long Quanity) {

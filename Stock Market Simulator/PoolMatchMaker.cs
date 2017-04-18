@@ -103,6 +103,7 @@ namespace Stock_Market_Simulator {
             }
         }
 
+
         void UpdatePools(List<BidPriceLevel> BidsPool, List<OfferPriceLevel> OffersPool) {
             foreach (BidPriceLevel BPL in BidsPool) {
                 MarketMakerManager.AddJob(BPL.bids.Where((Bids b) => b.TurnsInPool >= 10 && b.Quanity > 0).ToList());
